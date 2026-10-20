@@ -1,0 +1,30 @@
+/* 采集题库题图：题目配图的展示与自适应尺寸 */
+
+.stem-media {
+  display: block;
+  max-width: 420px;
+  width: 100%;
+  height: auto;
+  margin: 0 auto 20px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+}
+
+/* 成绩单错题解析中的小图 */
+.review-media {
+  display: block;
+  max-width: 260px;
+  width: 100%;
+  height: auto;
+  margin: 8px 0 2px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+@media (max-width: 680px) {
+  .stem-media {
+    max-width: 100%;
+  }
+}

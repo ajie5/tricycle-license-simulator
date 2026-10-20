@@ -1,0 +1,299 @@
+/* 实操考试模块专用样式：沿用主题设计令牌，补充流程条、步骤卡与评判区 */
+
+.practical-entries {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.practical-entry {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: left;
+  padding: 22px 24px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-1);
+  transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;
+}
+.practical-entry:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card);
+}
+.practical-entry.is-active {
+  border-color: var(--ink);
+}
+.practical-entry .ek {
+  font: 500 11px var(--font-sans);
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+.practical-entry h3 {
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.practical-entry p {
+  font-size: 12.5px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+.practical-entry .em {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: auto;
+  padding-top: 6px;
+  font: 500 11px var(--font-sans);
+  color: var(--muted);
+}
+
+/* 流程条 */
+.flow-line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.flow-stop {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 13px 7px 7px;
+  border-radius: 999px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  font-size: 12px;
+  color: var(--muted);
+}
+.flow-stop .n {
+  width: 21px;
+  height: 21px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--fill);
+  font-size: 10.5px;
+  font-weight: 500;
+  color: var(--muted);
+}
+.flow-stop.is-done {
+  background: var(--green-soft);
+  border-color: transparent;
+  color: var(--green-deep);
+}
+.flow-stop.is-done .n {
+  background: var(--green);
+  color: #fff;
+}
+.flow-stop.is-now {
+  border-color: transparent;
+  background: var(--ink);
+  color: #fff;
+}
+.flow-stop.is-now .n {
+  background: rgba(255, 255, 255, 0.22);
+  color: #fff;
+}
+
+/* 语音指令卡 */
+.command {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 16px 18px;
+  border-radius: var(--radius-sm);
+  background: var(--fill);
+}
+.command .od-icon {
+  color: var(--muted);
+  margin-top: 3px;
+}
+.command .cb {
+  display: block;
+  font: 500 10.5px var(--font-sans);
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+.command p {
+  font-size: 15px;
+  line-height: 1.7;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+/* 评判区 */
+.judge {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 18px;
+}
+.judge-title {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 600;
+}
+.judge-title span {
+  font: 400 11px var(--font-sans);
+  color: var(--muted);
+}
+.judge-btn {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  width: 100%;
+  text-align: left;
+  padding: 13px 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  font-size: 14px;
+  line-height: 1.55;
+  transition: border-color 0.14s ease, background 0.14s ease;
+}
+.judge-btn:hover {
+  border-color: var(--ink);
+  background: var(--paper);
+}
+.judge-btn .judge-mark {
+  flex: none;
+  width: 22px;
+  height: 22px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-size: 11px;
+  font-weight: 600;
+  color: #fff;
+  background: var(--ink);
+  margin-top: 1px;
+}
+.judge-btn .judge-body {
+  flex: 1;
+  min-width: 0;
+}
+.judge-btn .judge-basis {
+  display: block;
+  margin-top: 2px;
+  font-size: 11.5px;
+  color: var(--muted);
+}
+.judge-btn .judge-score {
+  flex: none;
+  font: 600 12px var(--font-sans);
+  color: var(--muted);
+  white-space: nowrap;
+  margin-top: 2px;
+}
+.judge-btn.is-ok .judge-mark {
+  background: var(--green);
+}
+.judge-btn.is-deduct .judge-mark {
+  background: var(--amber);
+}
+.judge-btn.is-fail .judge-mark {
+  background: var(--red);
+}
+.judge-btn.is-fail {
+  border-color: rgba(179, 38, 30, 0.28);
+}
+.judge-btn.is-fail .judge-score {
+  color: var(--red-ink);
+}
+.judge-btn.is-picked {
+  border-color: var(--ink);
+  background: var(--paper-2, var(--paper));
+  box-shadow: inset 3px 0 0 var(--ink);
+}
+.judge-btn:disabled {
+  cursor: default;
+  opacity: 0.55;
+}
+.judge-btn:disabled.is-picked {
+  opacity: 1;
+}
+.judge-btn:disabled:hover {
+  border-color: var(--line);
+  background: var(--surface);
+}
+.judge-btn:disabled.is-picked:hover {
+  border-color: var(--ink);
+  background: var(--paper-2, var(--paper));
+}
+
+/* 评判记录 */
+.log-list {
+  display: flex;
+  flex-direction: column;
+}
+.log-item {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+}
+.log-item:last-child {
+  border-bottom: 0;
+}
+.log-item .log-kind {
+  flex: none;
+  min-width: 42px;
+  padding: 2px 8px;
+  border-radius: 6px;
+  text-align: center;
+  font-size: 10.5px;
+  font-weight: 600;
+  color: #fff;
+  background: var(--ink);
+}
+.log-item .log-kind.ok {
+  background: var(--green);
+}
+.log-item .log-kind.deduct {
+  background: var(--amber);
+}
+.log-item .log-kind.fail {
+  background: var(--red);
+}
+.log-item .log-body {
+  flex: 1;
+  min-width: 0;
+}
+.log-item .log-name {
+  font-size: 13px;
+  font-weight: 600;
+}
+.log-item .log-desc {
+  margin-top: 2px;
+  font-size: 11.5px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+/* 计时器（暂停态） */
+.timer.is-paused {
+  background: var(--amber-soft);
+  border-color: transparent;
+  color: var(--amber);
+}
+.timer.is-paused .timer-label {
+  color: var(--amber);
+  opacity: 0.85;
+}
+
+@media (max-width: 680px) {
+  .practical-entries {
+    grid-template-columns: 1fr;
+  }
+  .judge-btn {
+    padding: 12px 13px;
+    font-size: 13.5px;
+  }
+}

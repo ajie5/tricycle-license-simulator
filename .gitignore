@@ -1,0 +1,29 @@
+# 依赖与构建产物
+node_modules/
+dist/
+dist-electron/
+release/
+*.tsbuildinfo
+
+# 采集数据（题库、题图、视频与图文目录、原始下载缓存、日志），不入版本库
+data/
+__media__/
+
+# 编辑器与系统文件
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 日志与临时文件
+*.log
+npm-debug.log*
+yarn-error.log*
+*.tmp
+*.bak
+
+# 本地环境变量
+.env
+.env.*
+!.env.example

@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light" />
+    <!-- 仅允许本地资源与采集图协议；采集插图失败时回退到远端地址，因此放行 https 图片 -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: tricycle-media: https:; media-src 'self' tricycle-media: https:; connect-src 'self' ws: wss:; font-src 'self' data:;"
+    />
+    <title>三轮车驾考 · D 照刷题与模拟考试</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

@@ -1,0 +1,39 @@
+{
+  "name": "tricycle-license-simulator",
+  "productName": "三轮车驾考模拟",
+  "version": "1.0.0",
+  "private": true,
+  "description": "三轮摩托车 D 照驾考模拟程序：理论考试（科目一/科目四）与实操考试（科目二/科目三）",
+  "main": "electron/main.js",
+  "scripts": {
+    "dev": "concurrently -k -n WEB,DESKTOP -c cyan,green \"npm:dev:web\" \"npm:dev:desktop\"",
+    "dev:web": "vite",
+    "dev:desktop": "wait-on tcp:127.0.0.1:5173 && cross-env VITE_DEV_SERVER_URL=http://127.0.0.1:5173 electron .",
+    "web": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "build:only": "vite build",
+    "start": "npm run build && electron .",
+    "desktop": "electron .",
+    "collect": "node electron/collector/cli.js run",
+    "collect:status": "node electron/collector/cli.js status",
+    "collect:clear-cache": "node electron/collector/cli.js clear-cache",
+    "typecheck": "vue-tsc --noEmit"
+  },
+  "dependencies": {
+    "pinia": "^2.2.6",
+    "sql.js": "^1.15.1",
+    "vue": "^3.5.13",
+    "vue-router": "^4.4.5"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "@vitejs/plugin-vue": "^5.2.1",
+    "concurrently": "^9.1.0",
+    "cross-env": "^7.0.3",
+    "electron": "^33.2.1",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.11",
+    "vue-tsc": "^2.1.10",
+    "wait-on": "^8.0.1"
+  }
+}

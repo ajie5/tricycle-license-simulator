@@ -4,6 +4,8 @@
   "version": "1.0.0",
   "private": true,
   "description": "三轮摩托车 D 照驾考模拟程序：理论考试（科目一/科目四）与实操考试（科目二/科目三）",
+  "author": "ajie5",
+  "license": "MIT",
   "main": "electron/main.js",
   "scripts": {
     "dev": "concurrently -k -n WEB,DESKTOP -c cyan,green \"npm:dev:web\" \"npm:dev:desktop\"",
@@ -14,10 +16,43 @@
     "build:only": "vite build",
     "start": "npm run build && electron .",
     "desktop": "electron .",
+    "dist": "npm run build:only && electron-builder --win nsis",
     "collect": "node electron/collector/cli.js run",
     "collect:status": "node electron/collector/cli.js status",
     "collect:clear-cache": "node electron/collector/cli.js clear-cache",
     "typecheck": "vue-tsc --noEmit"
+  },
+  "build": {
+    "appId": "io.github.ajie5.tricycle-license-simulator",
+    "productName": "三轮车驾考模拟",
+    "artifactName": "tricycle-license-simulator-${version}-setup.${ext}",
+    "directories": {
+      "output": "release",
+      "buildResources": "build"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "signExecutable": false
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "shortcutName": "三轮车驾考模拟"
+    }
   },
   "dependencies": {
     "pinia": "^2.2.6",
@@ -31,6 +66,7 @@
     "concurrently": "^9.1.0",
     "cross-env": "^7.0.3",
     "electron": "^33.2.1",
+    "electron-builder": "^26.15.3",
     "typescript": "^5.6.3",
     "vite": "^5.4.11",
     "vue-tsc": "^2.1.10",

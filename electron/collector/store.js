@@ -3,10 +3,19 @@ const fs = require('node:fs');
 const path = require('node:path');
 const crypto = require('node:crypto');
 
-/** 数据根目录：默认位于项目文件夹下 */
+/** 数据根目录：开发时位于项目文件夹下；安装包运行时应用目录只读，改存到系统用户数据目录 */
 function resolveDataRoot() {
   const override = process.env.TRICYCLE_DATA_DIR;
   if (override) return path.resolve(override);
+  if (__dirname.includes('app.asar')) {
+    // 打包后 resources/app.asar 只读，数据写到 %APPDATA%/tricycle-license-simulator/data
+    try {
+      const { app } = require('electron');
+      return path.join(app.getPath('appData'), 'tricycle-license-simulator', 'data');
+    } catch {
+      // 非 Electron 运行时（理论上不会出现）继续按开发目录处理
+    }
+  }
   // electron/collector/store.js -> 项目根
   return path.resolve(__dirname, '..', '..', 'data');
 }

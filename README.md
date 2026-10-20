@@ -16,6 +16,26 @@
 
 ---
 
+## 界面预览
+
+| 学习总览 | 题库练习 · 图片题 |
+| :---: | :---: |
+| ![学习总览](docs/screenshots/01-home.png) | ![题库练习](docs/screenshots/02-practice.png) |
+
+| 作答与解析 | 模拟考试 |
+| :---: | :---: |
+| ![作答与解析](docs/screenshots/03-practice-answer.png) | ![模拟考试](docs/screenshots/04-exam.png) |
+
+| 实操考试 · 科目二 | 图文教程 |
+| :---: | :---: |
+| ![实操考试](docs/screenshots/05-practical.png) | ![图文教程](docs/screenshots/06-tutorial.png) |
+
+| 图文教程 · 线上视频课程 | 数据采集 |
+| :---: | :---: |
+| ![线上视频课程](docs/screenshots/07-tutorial-online.png) | ![数据采集](docs/screenshots/08-collect.png) |
+
+---
+
 ## 技术方案
 
 | 层次   | 选型                                                     |
@@ -37,6 +57,8 @@
 - Windows / macOS / Linux 桌面环境
 
 ## 运行说明
+
+> 也可直接从 [Releases](https://github.com/ajie5/tricycle-license-simulator/releases) 下载 Windows 安装包（`tricycle-license-simulator-1.0.0-setup.exe`），无需安装 Node 环境。
 
 ```bash
 # 1. 安装依赖（首次执行）
@@ -62,6 +84,7 @@ npm run build       # 类型检查 + 构建到 dist/
 npm run build:only  # 仅构建，不做类型检查
 npm run typecheck   # 仅类型检查
 npm run desktop     # 直接用已构建产物启动桌面窗口（需先 build）
+npm run dist        # 打包 Windows 安装包（electron-builder，输出到 release/）
 
 # 题库采集（脱离桌面端独立运行，便于测试或接入系统计划任务）
 npm run collect              # 立即采集一次
@@ -70,11 +93,11 @@ npm run collect:clear-cache  # 清理原始下载缓存（下次采集重新下�
 ```
 
 > 若 `npm install` 卡在 Electron 运行时二进制下载（默认从 GitHub 拉取约 100MB），
->
-> 可先设置国内镜像后重试：
+> 或 `npm run dist` 卡在 nsis / winCodeSign 等打包依赖下载，可先设置国内镜像后重试：
 >
 > ```powershell
 > $env:ELECTRON_MIRROR="https://npmmirror.com/mirrors/electron/"; npm install
+> $env:ELECTRON_BUILDER_BINARIES_MIRROR="https://npmmirror.com/mirrors/electron-builder-binaries/"; npm run dist
 > ```
 
 ---
@@ -121,7 +144,7 @@ npm run collect:clear-cache  # 清理原始下载缓存（下次采集重新下�
 
 ### 采集数据存放位置
 
-所有采集数据都保存在**当前项目文件夹**下的 `data/` 目录，可用界面上的「打开数据目录」直接查看：
+所有采集数据都保存在**当前项目文件夹**下的 `data/` 目录，可用界面上的「打开数据目录」直接查看（以安装包方式运行时，改为用户目录 `%APPDATA%\tricycle-license-simulator\data`，因为安装目录只读）：
 
 ```text
 data/
